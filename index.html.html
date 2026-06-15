@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--surface:#181c26;--surface2:#1f2535;--border:#2a3044;
+  --text:#e8eaf0;--muted:#7b849a;--hint:#4a5168;
+  --teal:#1db87a;--teal-dim:#0d3d2a;--teal-mid:#155c3c;
+  --blue:#4a9eff;--blue-dim:#0d2140;
+  --coral:#e85d3c;--coral-dim:#3d1a10;
+  --purple:#9b8ff5;--purple-dim:#251e42;
+  --amber:#f0a030;--amber-dim:#3a2800;
+  --red:#e84444;
+  --font-head:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;line-height:1.5;min-height:100vh}
+h1,h2,h3{font-family:var(--font-head)}
+
+/* NAV */
+.nav{display:flex;gap:2px;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:100}
+.nav-btn{font-family:var(--font-body);font-size:12px;font-weight:500;padding:6px 14px;border-radius:99px;border:1px solid transparent;background:none;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .15s}
+.nav-btn:hover{color:var(--text);background:var(--surface2)}
+.nav-btn.active{background:var(--teal-dim);border-color:var(--teal-mid);color:var(--teal)}
+
+/* PAGES */
+.page{display:none;padding:16px;max-width:900px;margin:0 auto}
+.page.active{display:block}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.card-sm{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:600px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* STAT */
+.stat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.stat-val{font-family:var(--font-head);font-size:22px;font-weight:700}
+.stat-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* PILL */
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px}
+.pill-teal{background:var(--teal-dim);color:var(--teal)}
+.pill-blue{background:var(--blue-dim);color:var(--blue)}
+.pill-coral{background:var(--coral-dim);color:var(--coral)}
+.pill-purple{background:var(--purple-dim);color:var(--purple)}
+.pill-amber{background:var(--amber-dim);color:var(--amber)}
+.pill-gray{background:#1e2230;color:var(--muted)}
+
+/* TODAY HERO */
+.today-hero{background:linear-gradient(135deg,var(--teal-dim) 0%,var(--surface) 60%);border:1px solid var(--teal-mid);border-radius:16px;padding:20px;margin-bottom:16px}
+.today-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}
+.today-title{font-family:var(--font-head);font-size:26px;font-weight:700;margin-bottom:4px}
+.today-sub{font-size:13px;color:var(--muted)}
+
+/* WEEK TABLE */
+.week-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.week-row:last-child{border-bottom:none}
+.week-row.today-row{background:var(--teal-dim);border-radius:8px;padding:10px 12px;border-bottom:none;margin:4px -4px}
+.week-day-name{font-size:11px;font-weight:600;color:var(--muted);min-width:28px;padding-top:2px;text-transform:uppercase}
+.week-day-date{font-size:11px;color:var(--hint);min-width:36px;padding-top:2px}
+.week-workout-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
+.week-workout-detail{font-size:11px;color:var(--muted);margin-top:2px}
+.week-miles{font-size:12px;font-weight:600;color:var(--teal);min-width:40px;text-align:right;padding-top:2px}
+.week-off{color:var(--hint);font-size:12px}
+
+/* COUNTDOWN */
+.countdown-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.countdown-race{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+.countdown-days{font-family:var(--font-head);font-size:48px;font-weight:700;line-height:1}
+.countdown-unit{font-size:12px;color:var(--muted);margin-top:4px}
+.countdown-name{font-size:13px;font-weight:500;margin-top:8px}
+.countdown-date{font-size:11px;color:var(--muted)}
+
+/* RUN CARDS */
+.run-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:8px}
+.run-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.run-date{font-size:11px;color:var(--muted);margin-bottom:8px}
+.run-stats{display:flex;gap:16px;flex-wrap:wrap}
+.run-stat{display:flex;flex-direction:column;gap:1px}
+.run-stat-val{font-family:var(--font-head);font-size:16px;font-weight:700}
+.run-stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+
+/* ZONE BAR */
+.zone-bar{height:6px;border-radius:3px;margin:4px 0}
+
+/* PHASE TIMELINE */
+.phase-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.phase-row:last-child{border-bottom:none}
+.phase-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.phase-name{font-size:13px;font-weight:500;flex:1}
+.phase-dates{font-size:11px;color:var(--muted);min-width:130px}
+.phase-miles{font-size:11px;font-weight:600;min-width:60px;text-align:right}
+.phase-bar-wrap{flex:1;height:4px;background:var(--border);border-radius:2px;max-width:120px}
+.phase-bar-fill{height:100%;border-radius:2px}
+
+/* FUEL TABS */
+.fuel-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.fuel-tab{font-size:11px;font-weight:500;padding:5px 12px;border-radius:99px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer}
+.fuel-tab.active{background:var(--teal-dim);border-color:var(--teal-mid);color:var(--teal)}
+.fuel-panel{display:none}
+.fuel-panel.active{display:block}
+
+/* TIMING GRID */
+.timing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+@media(max-width:500px){.timing-grid{grid-template-columns:1fr 1fr}}
+.timing-card{background:var(--surface2);border-radius:8px;padding:10px 12px}
+.timing-when{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.timing-what{font-size:13px;font-weight:600;color:var(--text)}
+.timing-note{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+
+/* GEL TIMELINE */
+.gel-line{position:relative;padding-left:20px;margin-bottom:12px}
+.gel-line::before{content:'';position:absolute;left:5px;top:8px;bottom:0;width:1px;background:var(--border)}
+.gel-item{position:relative;margin-bottom:12px}
+.gel-dot{position:absolute;left:-17px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--purple)}
+.gel-time{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.gel-action{font-size:13px;font-weight:500;color:var(--text)}
+.gel-detail{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* CHECKLIST */
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.check-item:last-child{border-bottom:none}
+.check-box{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.checked{background:var(--teal);border-color:var(--teal)}
+.check-box.checked::after{content:'✓';font-size:11px;color:#fff;font-weight:700}
+.check-text{font-size:13px;flex:1}
+.check-text.done{color:var(--muted);text-decoration:line-through}
+
+/* LOADING */
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+.spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* SECTION LABEL */
+.section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+
+/* ALERT */
+.alert{border-radius:8px;padding:10px 12px;font-size:12px;line-height:1.6;display:flex;gap:8px;margin-bottom:12px}
+.alert-info{background:var(--blue-dim);color:var(--blue);border:1px solid #1a3d6a}
+.alert-warn{background:var(--amber-dim);color:var(--amber);border:1px solid #4a3500}
+
+hr.divider{border:none;border-top:1px solid var(--border);margin:14px 0}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+<h2 class="sr-only">Lucas marathon training dashboard with Strava integration, weekly schedule, fueling guide, and race countdowns</h2>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showPage('week')">This week</button>
+  <button class="nav-btn" onclick="showPage('strava')">Strava runs</button>
+  <button class="nav-btn" onclick="showPage('schedule')">Full schedule</button>
+  <button class="nav-btn" onclick="showPage('fuel')">Fueling guide</button>
+  <button class="nav-btn" onclick="showPage('races')">Race countdowns</button>
+  <button class="nav-btn" onclick="showPage('checklist')">Post-run checklist</button>
+</nav>
+
+<!-- THIS WEEK -->
+<div id="page-week" class="page active">
+  <div id="today-hero" class="today-hero">
+    <div class="today-label">Today's workout</div>
+    <div class="today-title" id="today-title">Loading...</div>
+    <div class="today-sub" id="today-sub"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Race week — Jun 15–21</div>
+    <div id="week-rows"></div>
+  </div>
+
+  <div class="grid3">
+    <div class="card-sm">
+      <div class="stat-label">Week miles</div>
+      <div class="stat-val" style="color:var(--teal)">~24</div>
+      <div class="stat-sub">incl. race day</div>
+    </div>
+    <div class="card-sm">
+      <div class="stat-label">Days to race</div>
+      <div class="stat-val" id="days-to-10k" style="color:var(--amber)">—</div>
+      <div class="stat-sub">Pride 10K</div>
+    </div>
+    <div class="card-sm">
+      <div class="stat-label">Phase</div>
+      <div class="stat-val" style="font-size:16px;color:var(--purple)">Race week</div>
+      <div class="stat-sub">Taper complete</div>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <span>⚡</span>
+    <div><strong>Race week rule:</strong> Nothing this week makes you fitter. Your job is to stay sharp, stay fresh, and show up Sunday ready to run. Don't add miles because your legs feel good.</div>
+  </div>
+</div>
+
+<!-- STRAVA -->
+<div id="page-strava" class="page">
+  <div class="section-label" style="margin-bottom:12px">Recent runs</div>
+  <div id="strava-list"><div class="loading"><div class="spinner"></div>Loading from Strava...</div></div>
+</div>
+
+<!-- FULL SCHEDULE -->
+<div id="page-schedule" class="page">
+  <div class="section-label" style="margin-bottom:12px">Macro plan — Jun 2026 → Mar 2027</div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="section-label">Race calendar</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+      <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--teal-dim);border-radius:8px;border:1px solid var(--teal-mid)">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0"></div>
+        <div style="flex:1;font-size:13px;font-weight:500">LA Front Runners Pride 10K</div>
+        <div class="pill pill-teal">Jun 21, 2026</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--blue-dim);border-radius:8px;border:1px solid #1a3d6a">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0"></div>
+        <div style="flex:1;font-size:13px;font-weight:500">Long Beach Half Marathon</div>
+        <div class="pill pill-blue">Oct 11, 2026</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:8px;background:var(--purple-dim);border-radius:8px;border:1px solid #3a2e6a">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--purple);flex-shrink:0"></div>
+        <div style="flex:1;font-size:13px;font-weight:500">LA Marathon</div>
+        <div class="pill pill-purple">Mar 7, 2027</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Training phases</div>
+    <div id="phase-list"></div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Weekly structure (5 days)</div>
+    <div id="weekly-structure"></div>
+  </div>
+</div>
+
+<!-- FUELING -->
+<div id="page-fuel" class="page">
+  <div class="alert alert-info">
+    <span>💧</span>
+    <div><strong>Your system:</strong> GU Salted Caramel gel (~22g carbs, caffeine) + 2–3 SaltStick caps + water every 30 min. 2×500ml bottles (34oz total).</div>
+  </div>
+
+  <div class="fuel-tabs">
+    <button class="fuel-tab active" onclick="showFuel('recovery')">Recovery</button>
+    <button class="fuel-tab" onclick="showFuel('aerobic')">Aerobic</button>
+    <button class="fuel-tab" onclick="showFuel('tempo')">Tempo</button>
+    <button class="fuel-tab" onclick="showFuel('long')">Long run</button>
+    <button class="fuel-tab" onclick="showFuel('race')">Race day</button>
+    <button class="fuel-tab" onclick="showFuel('post')">Post-run</button>
+  </div>
+
+  <div id="fuel-recovery" class="fuel-panel active card">
+    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Recovery run</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">20–40 min · 125–135 bpm · 225–235 W · Ghost 17s</div>
+    <div class="timing-grid">
+      <div class="timing-card"><div class="timing-when">Before</div><div class="timing-what">Normal meal</div><div class="timing-note">No special prep needed</div></div>
+      <div class="timing-card"><div class="timing-when">During</div><div class="timing-what">Water only</div><div class="timing-note">No gels or electrolytes</div></div>
+      <div class="timing-card"><div class="timing-when">If depleted</div><div class="timing-what">Banana or toast</div><div class="timing-note">30 min before, 25g carbs</div></div>
+    </div>
+    <div class="section-label">Heat rule</div>
+    <div class="card-sm" style="font-size:12px;color:var(--muted)">Under 75°F → 8 oz water &nbsp;|&nbsp; 75–85°F → 12 oz &nbsp;|&nbsp; 85°F+ → 16 oz + electrolytes</div>
+  </div>
+
+  <div id="fuel-aerobic" class="fuel-panel card">
+    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Aerobic run</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">45–75 min · 125–138 bpm · 230–240 W · SL2s</div>
+    <div class="timing-grid">
+      <div class="timing-card"><div class="timing-when">2–3 hrs before</div><div class="timing-what">20–30g carbs</div><div class="timing-note">Banana + PB, toast + jam, oatmeal</div></div>
+      <div class="timing-card"><div class="timing-when">During</div><div class="timing-what">Water + electrolytes</div><div class="timing-note">Both bottles if hot or &gt;60 min</div></div>
+      <div class="timing-card"><div class="timing-when">Late run</div><div class="timing-what">Optional top-off</div><div class="timing-note">15g fast carb 30 min before</div></div>
+    </div>
+    <div class="alert alert-warn" style="margin-top:4px">At 97.5 kg you sweat more than average. Add SaltStick caps on any run above 75°F even if it feels optional.</div>
+  </div>
+
+  <div id="fuel-tempo" class="fuel-panel card">
+    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Tempo / workout run</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">45–75 min · 148–156 bpm · 255–270 W · Boston 12s</div>
+    <div class="timing-grid">
+      <div class="timing-card"><div class="timing-when">2.5–3 hrs before</div><div class="timing-what">60–90g carbs</div><div class="timing-note">Low fiber, low fat. Oatmeal + banana, bagel + jam, rice + light protein</div></div>
+      <div class="timing-card"><div class="timing-when">30 min before</div><div class="timing-what">Optional half GU</div><div class="timing-note">Only if feeling depleted</div></div>
+      <div class="timing-card"><div class="timing-when">During</div><div class="timing-what">Water + electrolytes</div><div class="timing-note">Sip between intervals — no gels unless &gt;70 min</div></div>
+    </div>
+  </div>
+
+  <div id="fuel-long" class="fuel-panel card">
+    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Long run</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">75+ min · 125–138 bpm · SL2s · Gut training is mandatory</div>
+    <div class="section-label">GU gel timeline (every 30 min from 45 min in)</div>
+    <div class="gel-line">
+      <div class="gel-item"><div class="gel-dot"></div><div class="gel-time">Start → 40 min</div><div class="gel-action">Water only</div><div class="gel-detail">Let stored glycogen do the work</div></div>
+      <div class="gel-item"><div class="gel-dot"></div><div class="gel-time">~40–45 min</div><div class="gel-action">GU #1 + 2–3 SaltStick caps + 6–8 oz water</div><div class="gel-detail">Fuel before you need it — this is the key habit</div></div>
+      <div class="gel-item"><div class="gel-dot"></div><div class="gel-time">~70–80 min</div><div class="gel-action">GU #2 + 2–3 SaltStick caps + water</div><div class="gel-detail">Keep sodium up in SoCal heat</div></div>
+      <div class="gel-item"><div class="gel-dot"></div><div class="gel-time">~105–110 min</div><div class="gel-action">GU #3 + 2–3 SaltStick caps + water</div><div class="gel-detail">Runs 16+ mi — consider non-caffeinated alternate</div></div>
+      <div class="gel-item"><div class="gel-dot"></div><div class="gel-time">~140 min</div><div class="gel-action">GU #4 if needed (20+ mi runs)</div><div class="gel-detail">Plan 2 bottle refill points on 2+ hr routes</div></div>
+    </div>
+    <div class="section-label">Hourly targets</div>
+    <div class="timing-grid">
+      <div class="timing-card"><div class="timing-when">Carbs</div><div class="timing-what">30–45g/hr</div><div class="timing-note">Upper end on 16+ mi runs</div></div>
+      <div class="timing-card"><div class="timing-when">Fluids</div><div class="timing-what">16–24 oz/hr</div><div class="timing-note">Upper end in direct sun or 80°F+</div></div>
+      <div class="timing-card"><div class="timing-when">Sodium</div><div class="timing-what">400–700mg/hr</div><div class="timing-note">2–3 SaltStick caps = 430–645mg</div></div>
+    </div>
+  </div>
+
+  <div id="fuel-race" class="fuel-panel card">
+    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:14px">Race day fueling</div>
+
+    <div class="section-label">🏳️‍🌈 Pride 10K — Jun 21</div>
+    <div class="timing-grid" style="margin-bottom:14px">
+      <div class="timing-card"><div class="timing-when">2–3 hrs pre</div><div class="timing-what">60–90g carbs</div><div class="timing-note">Bagel + banana + honey + OJ + 20 oz water</div></div>
+      <div class="timing-card"><div class="timing-when">10–15 min before</div><div class="timing-what">Optional half GU</div><div class="timing-note">Only if practiced</div></div>
+      <div class="timing-card"><div class="timing-when">During</div><div class="timing-what">Water only</div><div class="timing-note">Aid stations — no gels needed for 10K</div></div>
+    </div>
+    <hr class="divider">
+    <div class="section-label">Long Beach Half — Oct 11</div>
+    <div class="gel-line">
+      <div class="gel-item"><div class="gel-dot" style="background:var(--blue)"></div><div class="gel-time">10 min before gun</div><div class="gel-action">GU #1 + water</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--blue)"></div><div class="gel-time">Mile 4–5 (~35 min)</div><div class="gel-action">GU #2 + 2–3 SaltStick caps + water</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--blue)"></div><div class="gel-time">Mile 8–9 (~70 min)</div><div class="gel-action">GU #3 + 2–3 SaltStick caps + water</div><div class="gel-detail">Critical — fuels miles 9–13</div></div>
+    </div>
+    <hr class="divider">
+    <div class="section-label">LA Marathon — Mar 7, 2027</div>
+    <div class="gel-line">
+      <div class="gel-item"><div class="gel-dot" style="background:var(--purple)"></div><div class="gel-time">10 min before gun</div><div class="gel-action">GU #1</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--purple)"></div><div class="gel-time">Mile 5 (~45 min)</div><div class="gel-action">GU #2 + 2–3 SaltStick caps</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--purple)"></div><div class="gel-time">Mile 10 (~90 min)</div><div class="gel-action">GU #3 + 2–3 SaltStick caps</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--purple)"></div><div class="gel-time">Mile 15 (~2:15)</div><div class="gel-action">GU #4 + 2–3 SaltStick caps</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--purple)"></div><div class="gel-time">Mile 19–20 (~3:00)</div><div class="gel-action">GU #5 + 2–3 SaltStick caps</div></div>
+      <div class="gel-item"><div class="gel-dot" style="background:var(--purple)"></div><div class="gel-time">Mile 23 (optional)</div><div class="gel-action">Caffeine gel — only if practiced in training</div></div>
+    </div>
+  </div>
+
+  <div id="fuel-post" class="fuel-panel card">
+    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Post-run recovery</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Every run. The 30–60 min window matters most.</div>
+    <div class="timing-grid">
+      <div class="timing-card"><div class="timing-when">0–5 min</div><div class="timing-what">5 min walk</div><div class="timing-note">Cool-down before stopping — always</div></div>
+      <div class="timing-card"><div class="timing-when">5–30 min</div><div class="timing-what">Rehydrate + quick carbs</div><div class="timing-note">16–24 oz water. Chocolate milk, banana + granola, smoothie</div></div>
+      <div class="timing-card"><div class="timing-when">30–60 min</div><div class="timing-what">Full recovery meal</div><div class="timing-note">Rice + protein, pasta + protein, eggs + toast</div></div>
+    </div>
+    <div class="section-label">Post-run targets (at 97.5 kg)</div>
+    <div class="card-sm" style="font-size:12px;color:var(--muted)">~146g carbs + 29g protein within 2 hrs of hard efforts. Log Strava notes: legs, calf, breathing, weather.</div>
+  </div>
+</div>
+
+<!-- RACE COUNTDOWNS -->
+<div id="page-races" class="page">
+  <div class="section-label" style="margin-bottom:12px">Race countdowns</div>
+  <div class="grid3" id="countdown-grid"></div>
+
+  <div class="card" style="margin-top:4px">
+    <div class="section-label">Training zones (recalibrated)</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12px;font-weight:500">Recovery</span><span style="font-size:12px;color:var(--muted)">125–135 bpm · 225–235 W</span></div><div class="zone-bar" style="background:var(--teal);width:30%"></div></div>
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12px;font-weight:500">Easy aerobic</span><span style="font-size:12px;color:var(--muted)">125–138 bpm · 230–240 W</span></div><div class="zone-bar" style="background:var(--blue);width:45%"></div></div>
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12px;font-weight:500">Steady aerobic</span><span style="font-size:12px;color:var(--muted)">138–145 bpm · 240–252 W</span></div><div class="zone-bar" style="background:#7ecfb0;width:58%"></div></div>
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12px;font-weight:500">Tempo</span><span style="font-size:12px;color:var(--muted)">148–156 bpm · 255–270 W</span></div><div class="zone-bar" style="background:var(--amber);width:72%"></div></div>
+      <div><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:12px;font-weight:500">VO2 / Race</span><span style="font-size:12px;color:var(--muted)">157+ bpm · 275+ W</span></div><div class="zone-bar" style="background:var(--coral);width:90%"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Key rules</div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+      <div style="font-size:12px;color:var(--muted)">→ HR + power over pace — always</div>
+      <div style="font-size:12px;color:var(--muted)">→ Easy days must stay below 138 bpm — no gray-zone creep</div>
+      <div style="font-size:12px;color:var(--muted)">→ Stop immediately if left calf tightness appears</div>
+      <div style="font-size:12px;color:var(--muted)">→ Cutback every 3rd week — 20–25% mileage drop</div>
+      <div style="font-size:12px;color:var(--muted)">→ Heat = slow down, move to lower end of zones</div>
+      <div style="font-size:12px;color:var(--muted)">→ Sleep target: 7.5–8 hrs minimum every night</div>
+    </div>
+  </div>
+</div>
+
+<!-- POST-RUN CHECKLIST -->
+<div id="page-checklist" class="page">
+  <div class="section-label" style="margin-bottom:4px">Post-run checklist</div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Tap each item as you complete it. Resets on reload.</div>
+
+  <div class="card">
+    <div class="section-label">Immediately after</div>
+    <div id="checklist-immediate"></div>
+  </div>
+  <div class="card">
+    <div class="section-label">Within 30–60 min</div>
+    <div id="checklist-fuel"></div>
+  </div>
+  <div class="card">
+    <div class="section-label">Calf & injury check</div>
+    <div id="checklist-calf"></div>
+  </div>
+  <div class="card">
+    <div class="section-label">Log it</div>
+    <div id="checklist-log"></div>
+  </div>
+
+  <button onclick="resetChecklist()" style="margin-top:8px;width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;font-size:12px">Reset checklist</button>
+</div>
+
+<script>
+const TODAY = new Date('2026-06-14');
+const DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function fmt(d){return `${MONTHS[d.getMonth()]} ${d.getDate()}`}
+function daysUntil(dateStr){
+  const t=new Date(dateStr);
+  return Math.ceil((t-TODAY)/(1000*60*60*24));
+}
+
+// WEEK DATA
+const raceWeek = [
+  {day:'Mon',date:'Jun 15',name:'Recovery run',detail:'3 mi · 125–135 bpm · 225–235 W · Ghost 17s',miles:'3 mi',type:'recovery',off:false},
+  {day:'Tue',date:'Jun 16',name:'Aerobic run',detail:'5 mi · 125–138 bpm · 230–240 W · SL2s',miles:'5 mi',type:'aerobic',off:false},
+  {day:'Wed',date:'Jun 17',name:'Short tempo',detail:'4–5 mi · 2 mi wu + 2×8 min @ 148–156 bpm + cd · Boston 12',miles:'4–5 mi',type:'tempo',off:false},
+  {day:'Thu',date:'Jun 18',name:'Off / mobility',detail:'Calf raises, foam roll, light stretching',miles:'—',type:'off',off:true},
+  {day:'Fri',date:'Jun 19',name:'Aerobic run',detail:'4 mi · 125–138 bpm · SL2s · 3×20-sec strides at end',miles:'4 mi',type:'aerobic',off:false},
+  {day:'Sat',date:'Jun 20',name:'Pre-race shakeout',detail:'2 mi · easy jog + 2 strides · SL2s · gear check after',miles:'2 mi',type:'recovery',off:false},
+  {day:'Sun',date:'Jun 21',name:'🏳️‍🌈 PRIDE 10K',detail:'6.2 mi · 148–156 bpm · 255–270 W · Boston 12s · controlled start, press final 2K',miles:'6.2 mi',type:'race',off:false},
+];
+
+const typeColors = {recovery:'var(--teal)',aerobic:'var(--blue)',tempo:'var(--coral)',race:'var(--amber)',off:'var(--hint)'};
+
+function buildWeek(){
+  const todayName = DAYS[TODAY.getDay()];
+  const container = document.getElementById('week-rows');
+  let todayWorkout = null;
+
+  raceWeek.forEach(r => {
+    const isToday = r.day === todayName;
+    if(isToday) todayWorkout = r;
+    const row = document.createElement('div');
+    row.className = 'week-row' + (isToday ? ' today-row' : '');
+    row.innerHTML = `
+      <div class="week-day-name" style="color:${isToday?typeColors[r.type]:'var(--muted)'}">${r.day}</div>
+      <div style="flex:1">
+        <div class="week-workout-name" style="${r.off?'color:var(--hint)':''}">${r.name}</div>
+        <div class="week-workout-detail">${r.detail}</div>
+      </div>
+      <div class="week-miles" style="color:${typeColors[r.type]}">${r.miles}</div>
+    `;
+    container.appendChild(row);
+  });
+
+  // Today hero
+  if(todayWorkout){
+    document.getElementById('today-title').textContent = todayWorkout.name;
+    document.getElementById('today-sub').textContent = todayWorkout.detail;
+  }
+
+  // Days to 10K
+  const d = daysUntil('2026-06-21');
+  document.getElementById('days-to-10k').textContent = d <= 0 ? 'Today!' : d;
+}
+
+// STRAVA DATA (pre-loaded)
+const stravaRuns = [
+  {name:'Marathon Training - Day 48',date:'Jun 13, 2026',dist:10.01,time:'1:58:42',hr:134.6,watts:235.9,cal:1385,desc:'The long controlled run.'},
+  {name:'Marathon Training - Day 47',date:'Jun 12, 2026',dist:4.01,time:'47:03',hr:null,watts:null,cal:549,desc:'Suns out, guns out. Working on controlling my heart rate as the temperature rises.'},
+  {name:'Marathon Training - Day 46',date:'Jun 11, 2026',dist:5.01,time:'57:00',hr:139.6,watts:245.8,cal:704,desc:'The clouds parted right as I hit the trail.'},
+  {name:'Marathon Training - Day 45',date:'Jun 9, 2026',dist:5.01,time:'55:58',hr:139.8,watts:250.9,cal:701,desc:'4 miles at zone 2 with a 1 mile at tempo.'},
+  {name:'Marathon Training - Day 44',date:'Jun 8, 2026',dist:4.02,time:'46:03',hr:null,watts:null,cal:554,desc:'Nice and sunny run.'},
+  {name:'Marathon Training - Day 43',date:'Jun 6, 2026',dist:8.07,time:'93:45',hr:null,watts:null,cal:1105,desc:'The longish run in zone 2.'},
+];
+
+function buildStrava(){
+  const container = document.getElementById('strava-list');
+  container.innerHTML = '';
+  stravaRuns.forEach(r => {
+    const hrColor = r.hr ? (r.hr > 145 ? 'var(--coral)' : r.hr > 138 ? 'var(--amber)' : 'var(--teal)') : 'var(--muted)';
+    const wColor = r.watts ? (r.watts > 252 ? 'var(--amber)' : 'var(--blue)') : 'var(--muted)';
+    container.innerHTML += `
+      <div class="run-card">
+        <div class="run-name">${r.name}</div>
+        <div class="run-date">${r.date}${r.desc ? ' · <em style="color:var(--muted)">' + r.desc + '</em>' : ''}</div>
+        <div class="run-stats">
+          <div class="run-stat"><div class="run-stat-val">${r.dist}</div><div class="run-stat-label">miles</div></div>
+          <div class="run-stat"><div class="run-stat-val">${r.time}</div><div class="run-stat-label">time</div></div>
+          ${r.hr ? `<div class="run-stat"><div class="run-stat-val" style="color:${hrColor}">${r.hr}</div><div class="run-stat-label">avg bpm</div></div>` : ''}
+          ${r.watts ? `<div class="run-stat"><div class="run-stat-val" style="color:${wColor}">${r.watts}W</div><div class="run-stat-label">avg power</div></div>` : ''}
+          <div class="run-stat"><div class="run-stat-val">${r.cal}</div><div class="run-stat-label">cal</div></div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// PHASES
+const phases = [
+  {name:'Phase 0 · Recovery',dates:'Jun 22 – Jun 30',miles:'10–15 mi',color:'var(--muted)',pct:4},
+  {name:'Phase 1 · Aerobic base',dates:'Jul 1 – Aug 10',miles:'20→32 mi/wk',color:'var(--teal)',pct:25},
+  {name:'Phase 2 · HM build',dates:'Aug 11 – Oct 11',miles:'32→38 mi/wk',color:'var(--blue)',pct:55},
+  {name:'Phase 3 · Marathon base',dates:'Oct 19 – Dec 14',miles:'28→42 mi/wk',color:'var(--coral)',pct:70},
+  {name:'Phase 4 · Sharpening',dates:'Dec 15 – Feb 21',miles:'38→44 mi/wk',color:'var(--purple)',pct:90},
+  {name:'Phase 5 · Taper',dates:'Feb 22 – Mar 7',miles:'25→12 mi',color:'var(--amber)',pct:30},
+];
+
+const weekDays = [
+  {day:'Mon',type:'Recovery run',hr:'125–135 bpm',pw:'225–235 W',shoes:'Ghost 17'},
+  {day:'Tue',type:'Easy aerobic',hr:'125–138 bpm',pw:'230–240 W',shoes:'SL2'},
+  {day:'Wed',type:'Tempo / workout',hr:'148–156 bpm',pw:'255–270 W',shoes:'Boston 12'},
+  {day:'Thu',type:'Off',hr:'—',pw:'—',shoes:'—'},
+  {day:'Fri',type:'Easy aerobic',hr:'125–138 bpm',pw:'230–240 W',shoes:'SL2'},
+  {day:'Sat',type:'Long run',hr:'125–138 bpm',pw:'230–240 W',shoes:'SL2'},
+  {day:'Sun',type:'Rest',hr:'—',pw:'—',shoes:'—'},
+];
+
+function buildSchedule(){
+  const phaseList = document.getElementById('phase-list');
+  phases.forEach(p => {
+    phaseList.innerHTML += `
+      <div class="phase-row">
+        <div class="phase-dot" style="background:${p.color}"></div>
+        <div style="flex:1">
+          <div class="phase-name">${p.name}</div>
+          <div style="font-size:11px;color:var(--muted)">${p.dates}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+          <div style="font-size:11px;font-weight:600;color:${p.color}">${p.miles}</div>
+          <div class="phase-bar-wrap"><div class="phase-bar-fill" style="background:${p.color};width:${p.pct}%"></div></div>
+        </div>
+      </div>
+    `;
+  });
+
+  const ws = document.getElementById('weekly-structure');
+  weekDays.forEach(d => {
+    const off = d.type === 'Off' || d.type === 'Rest';
+    ws.innerHTML += `
+      <div class="week-row">
+        <div class="week-day-name">${d.day}</div>
+        <div style="flex:1">
+          <div class="week-workout-name" style="${off?'color:var(--hint)':''}">${d.type}</div>
+          ${!off ? `<div class="week-workout-detail">${d.hr} · ${d.pw} · ${d.shoes}</div>` : ''}
+        </div>
+      </div>
+    `;
+  });
+}
+
+// COUNTDOWNS
+const races = [
+  {name:'Pride 10K',date:'2026-06-21',color:'var(--teal)',border:'var(--teal-mid)',bg:'var(--teal-dim)',goal:'Tune-up race'},
+  {name:'Long Beach Half',date:'2026-10-11',color:'var(--blue)',border:'#1a3d6a',bg:'var(--blue-dim)',goal:'Sub-2:30'},
+  {name:'LA Marathon',date:'2027-03-07',color:'var(--purple)',border:'#3a2e6a',bg:'var(--purple-dim)',goal:'Finish strong'},
+];
+
+function buildCountdowns(){
+  const grid = document.getElementById('countdown-grid');
+  races.forEach(r => {
+    const d = daysUntil(r.date);
+    grid.innerHTML += `
+      <div class="countdown-card" style="border-color:${r.border};background:${r.bg}">
+        <div class="countdown-race" style="color:${r.color}">${r.name}</div>
+        <div class="countdown-days" style="color:${r.color}">${d <= 0 ? '🏁' : d}</div>
+        <div class="countdown-unit">${d <= 0 ? 'Race day!' : 'days away'}</div>
+        <div class="countdown-name" style="color:${r.color}">${r.goal}</div>
+        <div class="countdown-date">${r.date}</div>
+      </div>
+    `;
+  });
+}
+
+// CHECKLISTS
+const checklists = {
+  immediate: ['5 min walk or cool-down before stopping','Rehydrate — 16–24 oz water immediately','Remove wet gear, change if possible'],
+  fuel: ['Quick carb top-off within 30 min (chocolate milk, banana + granola, smoothie)','Full recovery meal within 60 min (carbs + protein)','Electrolytes if you sweated heavily'],
+  calf: ['Check left calf — any tightness or soreness?','If tightness present: ice 10–15 min and flag it','Eccentric calf raises (3×15 each leg)','Foam roll calves and glutes'],
+  log: ['Log run in Strava with description','Note how legs felt and breathing quality','Note weather and sun exposure','Note any calf or body signals worth watching'],
+};
+
+function buildChecklist(){
+  Object.keys(checklists).forEach(key => {
+    const container = document.getElementById('checklist-' + key);
+    checklists[key].forEach((item, i) => {
+      const id = `${key}-${i}`;
+      const saved = localStorage.getItem(id) === 'true';
+      const div = document.createElement('div');
+      div.className = 'check-item';
+      div.innerHTML = `
+        <div class="check-box${saved?' checked':''}" id="box-${id}" onclick="toggleCheck('${id}')"></div>
+        <div class="check-text${saved?' done':''}" id="text-${id}">${item}</div>
+      `;
+      container.appendChild(div);
+    });
+  });
+}
+
+function toggleCheck(id){
+  const box = document.getElementById('box-' + id);
+  const text = document.getElementById('text-' + id);
+  const checked = box.classList.toggle('checked');
+  text.classList.toggle('done', checked);
+  try{ localStorage.setItem(id, checked); } catch(e){}
+}
+
+function resetChecklist(){
+  Object.keys(checklists).forEach(key => {
+    checklists[key].forEach((_, i) => {
+      const id = `${key}-${i}`;
+      document.getElementById('box-'+id)?.classList.remove('checked');
+      document.getElementById('text-'+id)?.classList.remove('done');
+      try{ localStorage.removeItem(id); } catch(e){}
+    });
+  });
+}
+
+// NAV
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function showFuel(id){
+  document.querySelectorAll('.fuel-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.fuel-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('fuel-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// INIT
+buildWeek();
+buildStrava();
+buildSchedule();
+buildCountdowns();
+buildChecklist();
+</script>
+</body>
+</html>
