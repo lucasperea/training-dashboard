@@ -593,13 +593,31 @@ function buildStrava(){
 // FULL SCHEDULE — phases with day-by-day accordion
 // ============================================================
 const PHASES=[
-{id:'p0',color:'#888780',title:'Phase 0 · Post-race recovery',dates:'Jun 22 – Jun 30',miles:'10–15 mi total',summary:'Full recovery from Pride 10K. No tempo, no long runs, daily calf mobility.',
-weeks:[{id:'w0a',title:'Recovery week',dates:'Jun 22–28',miles:'~12 mi',lbl:'Recovery',lc:'#888780',lb:'#1e2230',
-focus:'Ease off after the race. Move gently. Protect the left calf.',
-days:[{d:'Mon',w:'Full rest',det:'Walk only if desired',mi:'—',off:true},{d:'Tue',w:'Easy jog',det:'20–25 min @ Recovery (125–135 bpm) · Ghost 17s',mi:'~2.5'},{d:'Wed',w:'Rest + mobility',det:'Calf raises, foam roll, hip circles',mi:'—',off:true},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'30 min @ Easy (125–138 bpm) · SL2s',mi:'3'},{d:'Sat',w:'Easy run',det:'40 min @ Easy · SL2s · calf check throughout',mi:'4'},{d:'Sun',w:'Rest',det:'',mi:'—',off:true}]}]},
-{id:'p1',color:'#1db87a',title:'Phase 1 · Aerobic base build',dates:'Jul 1 – Aug 10',miles:'20 → 32 mi/wk',summary:'6 weeks. Build aerobic volume. Introduce tempo. Long runs to 12 mi.',
+{id:'p0',color:'#888780',title:'Phase 0 · Post-race recovery + Vegas/Mesquite',dates:'Jun 22 – Jul 6',miles:'~25 mi total',summary:'Recovery from Pride 10K then travel training block. Modified runs in Las Vegas and Mesquite, NV. 5 AM starts, treadmill fallback, strict heat protocols.',
 weeks:[
-{id:'w1a',title:'Base entry',dates:'Jul 1–7',miles:'20 mi',lbl:'Build',lc:'#1db87a',lb:'#0d3d2a',focus:'All runs easy. Settle into the 5-day structure.',days:[{d:'Mon',w:'Off',det:'',mi:'—',off:true},{d:'Tue',w:'Easy run',det:'4 mi @ Easy (125–138 bpm) · SL2s',mi:'4'},{d:'Wed',w:'Aerobic + strides',det:'5 mi easy + 4×20-sec hill strides · SL2s',mi:'5'},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'4 mi @ Easy · SL2s',mi:'4'},{d:'Sat',w:'Long run',det:'7 mi @ Easy (125–138 bpm) · SL2s',mi:'7'},{d:'Sun',w:'Rest',det:'',mi:'—',off:true}]},
+{id:'w0a',title:'Recovery week',dates:'Jun 22–28',miles:'~12 mi',lbl:'Recovery',lc:'#888780',lb:'#1e2230',
+focus:'Post-race recovery. Ease off completely. Ends with travel day to Las Vegas Sunday 6/28.',
+days:[{d:'Mon',w:'Full rest',det:'Walk only if desired. No running.',mi:'—',off:true},{d:'Tue',w:'Easy jog',det:'20–25 min @ Recovery (125–135 bpm) · Ghost 17s',mi:'~2.5'},{d:'Wed',w:'Rest + mobility',det:'Calf raises, foam roll, hip circles',mi:'—',off:true},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'30 min @ Easy (125–138 bpm) · SL2s',mi:'3'},{d:'Sat',w:'Easy run',det:'40 min @ Easy · SL2s · calf check throughout',mi:'4'},{d:'Sun',w:'Travel — La Mirada → Las Vegas',det:'Rest / Travel day. Stay hydrated. Light stretch. Protect legs for the week ahead.',mi:'—',off:true}]},
+{id:'w0b',title:'Vegas / Mesquite travel block',dates:'Jun 29 – Jul 5',miles:'~20 mi',lbl:'Modified',lc:'#4a9eff',lb:'#0d2140',
+focus:'5 AM starts every run day to beat desert heat. Treadmill fallback always available. Strict HR ceiling — walk if needed. Both handhelds on every outdoor run.',
+days:[
+{d:'Mon',w:'Recovery run — Las Vegas',det:'3 mi @ 125–135 bpm · Out by 5:00 AM · Both handhelds · 1–2 SaltStick caps pre-run · Walk if HR > 135',mi:'3'},
+{d:'Tue',w:'Aerobic run — Las Vegas',det:'4 mi @ 125–138 bpm · 5:00 AM or hotel treadmill · HR ceiling 138 · Flat route only, no hills',mi:'4'},
+{d:'Wed',w:'Modified tempo — Las Vegas',det:'30 min treadmill easy @ 130–138 bpm · Hotel gym AC · Skip outdoor tempo · Protect calf',mi:'~3'},
+{d:'Thu',w:'Rest — Las Vegas',det:'Full rest day. Hydrate aggressively. Legs prep for Mesquite block.',mi:'—',off:true},
+{d:'Fri',w:'Aerobic run — Vegas → Mesquite',det:'4–5 mi @ 125–138 bpm · Run before you drive · 5:00 AM in Vegas or upon arrival · Mesquite Trail System',mi:'4–5'},
+{d:'Sat',w:'Long run — Mesquite, NV',det:'6–7 mi @ 130–138 bpm · 5:00 AM start · Mesquite Trail System (paved, lit) · Both bottles + 2 GU gels + SaltStick every 30 min · Walk freely',mi:'6–7'},
+{d:'Sun',w:'Rest — Mesquite, NV',det:'Full rest day. Pool, shade, hydration. Let the aerobic work absorb.',mi:'—',off:true}]},
+{id:'w0c',title:'Return home — Mesquite',dates:'Jul 6',miles:'3 mi',lbl:'Recovery',lc:'#888780',lb:'#1e2230',
+focus:'Easy shake-out before heading home. Phase 1 base build begins Jul 7.',
+days:[
+{d:'Mon',w:'Recovery — Mesquite, NV',det:'3 mi @ 125–135 bpm · 5:00 AM · Easy shake-out before heading home · Foothills Trail or Mesquite Trail System',mi:'3'},
+{d:'Tue',w:'→ Phase 1 begins Jul 7',det:'Back in La Mirada. Base build starts.',mi:'—',off:true},
+{d:'Wed',w:'',det:'',mi:'—',off:true},{d:'Thu',w:'',det:'',mi:'—',off:true},{d:'Fri',w:'',det:'',mi:'—',off:true},{d:'Sat',w:'',det:'',mi:'—',off:true},{d:'Sun',w:'',det:'',mi:'—',off:true}]}
+]},
+{id:'p1',color:'#1db87a',title:'Phase 1 · Aerobic base build',dates:'Jul 7 – Aug 17',miles:'20 → 32 mi/wk',summary:'6 weeks. Build aerobic volume. Introduce tempo. Long runs to 12 mi.',
+weeks:[
+{id:'w1a',title:'Base entry',dates:'Jul 7–13',miles:'20 mi',lbl:'Build',lc:'#1db87a',lb:'#0d3d2a',focus:'All runs easy. Settle into the 5-day structure.',days:[{d:'Mon',w:'Off',det:'',mi:'—',off:true},{d:'Tue',w:'Easy run',det:'4 mi @ Easy (125–138 bpm) · SL2s',mi:'4'},{d:'Wed',w:'Aerobic + strides',det:'5 mi easy + 4×20-sec hill strides · SL2s',mi:'5'},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'4 mi @ Easy · SL2s',mi:'4'},{d:'Sat',w:'Long run',det:'7 mi @ Easy (125–138 bpm) · SL2s',mi:'7'},{d:'Sun',w:'Rest',det:'',mi:'—',off:true}]},
 {id:'w1b',title:'Build',dates:'Jul 8–14',miles:'24 mi',lbl:'Build',lc:'#1db87a',lb:'#0d3d2a',focus:'First tempo. 2×10 min — controlled, not all-out.',days:[{d:'Mon',w:'Off',det:'',mi:'—',off:true},{d:'Tue',w:'Easy run',det:'5 mi @ Easy · SL2s',mi:'5'},{d:'Wed',w:'Tempo',det:'6 mi: 1 wu + 2×10 min tempo (148–156 bpm, 2 min jog) + 1 cd · Boston 12',mi:'6'},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'4 mi @ Easy · SL2s',mi:'4'},{d:'Sat',w:'Long run',det:'9 mi @ Easy · SL2s',mi:'9'},{d:'Sun',w:'Rest',det:'',mi:'—',off:true}]},
 {id:'w1c',title:'Cutback',dates:'Jul 15–21',miles:'18 mi',lbl:'Cutback',lc:'#f0a030',lb:'#3a2800',focus:'Recovery week — drop 25%. All runs easy. No tempo. Calf check.',days:[{d:'Mon',w:'Off',det:'',mi:'—',off:true},{d:'Tue',w:'Easy run',det:'4 mi @ Easy · Ghost 17s',mi:'4'},{d:'Wed',w:'Easy + calf work',det:'4 mi easy + eccentric calf raises · SL2s',mi:'4'},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'3 mi @ Easy · SL2s',mi:'3'},{d:'Sat',w:'Long run',det:'7 mi @ Easy — stay below 135 bpm · SL2s',mi:'7'},{d:'Sun',w:'Rest',det:'',mi:'—',off:true}]},
 {id:'w1d',title:'Build',dates:'Jul 22–28',miles:'27 mi',lbl:'Build',lc:'#1db87a',lb:'#0d3d2a',focus:'Extend tempo to 3×10 min. Long run hits double digits.',days:[{d:'Mon',w:'Off',det:'',mi:'—',off:true},{d:'Tue',w:'Easy run',det:'5 mi @ Easy · SL2s',mi:'5'},{d:'Wed',w:'Tempo',det:'7 mi: 1 wu + 3×10 min tempo (148–156 bpm, 2 min jog) + 1 cd · Boston 12',mi:'7'},{d:'Thu',w:'Off',det:'',mi:'—',off:true},{d:'Fri',w:'Easy run',det:'5 mi @ Easy · SL2s',mi:'5'},{d:'Sat',w:'Long run',det:'10 mi @ Easy · GU at 45 min · SL2s',mi:'10'},{d:'Sun',w:'Rest',det:'',mi:'—',off:true}]},
