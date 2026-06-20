@@ -46,7 +46,7 @@ h1,h2,h3{font-family:var(--font-head)}
 @media(max-width:360px){.grid2,.grid3{grid-template-columns:1fr}}
 
 /* STAT */
-.stat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+.stat-label{font-size:10px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}
 .stat-val{font-family:var(--font-head);font-size:22px;font-weight:700}
 .stat-sub{font-size:11px;color:var(--muted);margin-top:2px}
 
@@ -68,7 +68,7 @@ h1,h2,h3{font-family:var(--font-head)}
 /* MILES PROGRESS */
 .miles-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
 .miles-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
-.miles-title{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.miles-title{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
 .miles-nums{font-family:var(--font-head);font-size:13px}
 .miles-ran{color:var(--teal);font-weight:700}
 .miles-sep{color:var(--hint);margin:0 3px}
@@ -77,7 +77,7 @@ h1,h2,h3{font-family:var(--font-head)}
 .miles-fill{height:100%;border-radius:5px;background:var(--teal);transition:width .5s ease}
 .miles-days{display:flex;gap:4px;margin-top:8px}
 .miles-day{flex:1;text-align:center}
-.miles-day-name{font-size:9px;color:var(--hint);text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.miles-day-name{font-size:9px;color:var(--hint);letter-spacing:.03em;margin-bottom:3px}
 .miles-day-dot{width:28px;height:28px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600}
 .miles-day-dot.done{background:var(--teal);color:#000}
 .miles-day-dot.today{background:var(--teal-dim);border:1.5px solid var(--teal);color:var(--teal)}
@@ -98,7 +98,7 @@ h1,h2,h3{font-family:var(--font-head)}
 .week-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
 .week-row:last-child{border-bottom:none}
 .week-row.today-row{background:var(--teal-dim);border-radius:8px;padding:10px 12px;border-bottom:none;margin:4px -4px}
-.week-day-name{font-size:11px;font-weight:600;color:var(--muted);min-width:28px;padding-top:2px;text-transform:uppercase}
+.week-day-name{font-size:11px;font-weight:600;color:var(--muted);min-width:28px;padding-top:2px}
 .week-workout-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
 .week-workout-detail{font-size:11px;color:var(--muted);margin-top:2px}
 .week-miles-col{font-size:12px;font-weight:600;min-width:40px;text-align:right;padding-top:2px}
@@ -116,7 +116,7 @@ h1,h2,h3{font-family:var(--font-head)}
 @media(max-width:480px){.run-stats-grid{grid-template-columns:repeat(3,1fr)}}
 .run-stat{background:var(--surface2);border-radius:6px;padding:8px 10px}
 .run-stat-val{font-family:var(--font-head);font-size:15px;font-weight:700;line-height:1.2}
-.run-stat-label{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-top:2px}
+.run-stat-label{font-size:9px;letter-spacing:.03em;color:var(--muted);margin-top:2px}
 .run-zone-bar{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:1px;margin-bottom:5px}
 .run-zone-seg{height:100%}
 .run-zone-seg:first-child{border-radius:4px 0 0 4px}
@@ -134,9 +134,9 @@ h1,h2,h3{font-family:var(--font-head)}
 .countdown-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
 @media(max-width:480px){.countdown-grid{grid-template-columns:1fr}}
 .countdown-card{background:var(--surface);border-radius:12px;padding:16px;text-align:center;border:1px solid var(--border)}
-.countdown-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+.countdown-label{font-size:10px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-bottom:6px}
 .countdown-num{font-family:var(--font-head);font-size:44px;font-weight:700;line-height:1}
-.countdown-unit{font-size:11px;color:var(--muted);margin-top:3px}
+.countdown-unit{font-size:11px;color:var(--muted);margin-top:3px;text-transform:none}
 .countdown-goal{font-size:12px;font-weight:500;margin-top:8px}
 .countdown-date{font-size:10px;color:var(--muted);margin-top:2px}
 
@@ -164,7 +164,7 @@ h1,h2,h3{font-family:var(--font-head)}
 .week-focus2{font-size:11px;color:var(--muted);padding:8px 0 6px;font-style:italic;border-bottom:1px solid var(--border);margin-bottom:6px}
 .day-row2{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)}
 .day-row2:last-child{border-bottom:none}
-.day-name2{font-size:10px;font-weight:500;color:var(--hint);min-width:24px;padding-top:2px;text-transform:uppercase}
+.day-name2{font-size:10px;font-weight:500;color:var(--hint);min-width:24px;padding-top:2px}
 .day-dot2{width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0}
 .day-content2{flex:1}
 .day-workout2{font-size:12px;font-weight:500}
@@ -181,14 +181,14 @@ h1,h2,h3{font-family:var(--font-head)}
 .timing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
 @media(max-width:480px){.timing-grid{grid-template-columns:1fr 1fr}}
 .timing-card{background:var(--surface2);border-radius:8px;padding:10px 12px}
-.timing-when{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+.timing-when{font-size:10px;font-weight:600;letter-spacing:.03em;color:var(--muted);margin-bottom:4px}
 .timing-what{font-size:13px;font-weight:600}
 .timing-note{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
 .gel-line{position:relative;padding-left:18px}
 .gel-line::before{content:'';position:absolute;left:5px;top:8px;bottom:0;width:1px;background:var(--border)}
 .gel-item{position:relative;margin-bottom:12px}
 .gel-dot2{position:absolute;left:-15px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--purple)}
-.gel-time{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.gel-time{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.03em}
 .gel-action{font-size:13px;font-weight:500}
 .gel-detail{font-size:11px;color:var(--muted);margin-top:1px}
 
@@ -203,7 +203,7 @@ h1,h2,h3{font-family:var(--font-head)}
 .check-text.done{color:var(--muted);text-decoration:line-through}
 
 /* MISC */
-.section-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+.section-label{font-size:10px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-bottom:8px}
 .divider{height:1px;background:var(--border);margin:14px 0}
 .alert{border-radius:8px;padding:10px 12px;font-size:12px;line-height:1.6;display:flex;gap:8px;margin-bottom:12px;align-items:flex-start}
 .alert-warn{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-mid)}
@@ -213,18 +213,18 @@ h1,h2,h3{font-family:var(--font-head)}
 <body>
 
 <nav class="nav">
-  <button class="nav-btn active" onclick="showPage('week',this)">This week</button>
-  <button class="nav-btn" onclick="showPage('strava',this)">Strava runs</button>
-  <button class="nav-btn" onclick="showPage('schedule',this)">Full schedule</button>
-  <button class="nav-btn" onclick="showPage('fuel',this)">Fueling guide</button>
-  <button class="nav-btn" onclick="showPage('races',this)">Race countdowns</button>
-  <button class="nav-btn" onclick="showPage('checklist',this)">Post-run checklist</button>
+  <button class="nav-btn active" onclick="showPage('week',this)">This Week</button>
+  <button class="nav-btn" onclick="showPage('strava',this)">Strava Runs</button>
+  <button class="nav-btn" onclick="showPage('schedule',this)">Full Schedule</button>
+  <button class="nav-btn" onclick="showPage('fuel',this)">Fueling Guide</button>
+  <button class="nav-btn" onclick="showPage('races',this)">Race Countdowns</button>
+  <button class="nav-btn" onclick="showPage('checklist',this)">Post-Run Checklist</button>
 </nav>
 
 <!-- ===== THIS WEEK ===== -->
 <div id="page-week" class="page active">
   <div id="today-hero" class="today-hero">
-    <div class="today-label">Today's workout</div>
+    <div class="today-label">Today's Workout</div>
     <div class="today-title" id="today-title">—</div>
     <div class="today-sub" id="today-sub"></div>
   </div>
@@ -232,12 +232,12 @@ h1,h2,h3{font-family:var(--font-head)}
   <!-- MILES PROGRESS -->
   <div class="miles-card">
     <div class="miles-header">
-      <span class="miles-title">Week miles</span>
+      <span class="miles-title">Week Miles</span>
       <span class="miles-nums">
         <span class="miles-ran" id="miles-ran">0</span>
         <span class="miles-sep">/</span>
         <span class="miles-planned" id="miles-planned">24</span>
-        <span style="font-size:11px;color:var(--muted)"> mi planned</span>
+        <span style="font-size:11px;color:var(--muted)"> Mi Planned</span>
       </span>
     </div>
     <div class="miles-track">
@@ -248,7 +248,7 @@ h1,h2,h3{font-family:var(--font-head)}
 
   <!-- ZONE BAR -->
   <div class="card">
-    <div class="section-label">Last 7 days — HR zone distribution</div>
+    <div class="section-label">Last 7 Days — HR Zone Distribution</div>
     <div id="week-zone-stack" style="display:flex;height:14px;border-radius:7px;overflow:hidden;gap:1px;margin-bottom:8px"></div>
     <div class="zone-legend" id="week-zone-legend"></div>
     <div style="font-size:11px;color:var(--hint);margin-top:8px;font-style:italic" id="week-zone-note"></div>
@@ -256,7 +256,7 @@ h1,h2,h3{font-family:var(--font-head)}
 
   <!-- WEEK SCHEDULE -->
   <div class="card">
-    <div class="section-label">Race week — Jun 15–21</div>
+    <div class="section-label">Race Week — Jun 15–21</div>
     <div id="week-rows"></div>
   </div>
 
@@ -268,15 +268,15 @@ h1,h2,h3{font-family:var(--font-head)}
 
 <!-- ===== STRAVA RUNS ===== -->
 <div id="page-strava" class="page">
-  <div class="section-label" style="margin-bottom:12px">Recent runs</div>
+  <div class="section-label" style="margin-bottom:12px">Recent Runs</div>
   <div id="strava-cards"></div>
 </div>
 
 <!-- ===== FULL SCHEDULE ===== -->
 <div id="page-schedule" class="page">
-  <div class="section-label" style="margin-bottom:10px">Race calendar</div>
+  <div class="section-label" style="margin-bottom:10px">Race Calendar</div>
   <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px" id="race-calendar"></div>
-  <div class="section-label">Training phases — Jun 2026 → Mar 2027</div>
+  <div class="section-label">Training Phases — Jun 2026 → Mar 2027</div>
   <div id="phases-container"></div>
 </div>
 
@@ -290,9 +290,9 @@ h1,h2,h3{font-family:var(--font-head)}
     <button class="fuel-tab active" onclick="showFuel('recovery',this)">Recovery</button>
     <button class="fuel-tab" onclick="showFuel('aerobic',this)">Aerobic</button>
     <button class="fuel-tab" onclick="showFuel('tempo',this)">Tempo</button>
-    <button class="fuel-tab" onclick="showFuel('long',this)">Long run</button>
-    <button class="fuel-tab" onclick="showFuel('race',this)">Race day</button>
-    <button class="fuel-tab" onclick="showFuel('post',this)">Post-run</button>
+    <button class="fuel-tab" onclick="showFuel('long',this)">Long Run</button>
+    <button class="fuel-tab" onclick="showFuel('race',this)">Race Day</button>
+    <button class="fuel-tab" onclick="showFuel('post',this)">Post-Run</button>
   </div>
   <div id="fuel-recovery" class="fuel-panel active card">
     <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Recovery run</div>
@@ -302,7 +302,7 @@ h1,h2,h3{font-family:var(--font-head)}
       <div class="timing-card"><div class="timing-when">During</div><div class="timing-what">Water only</div><div class="timing-note">No gels or electrolytes</div></div>
       <div class="timing-card"><div class="timing-when">If depleted</div><div class="timing-what">Banana or toast</div><div class="timing-note">~25g carbs, 30 min before</div></div>
     </div>
-    <div class="section-label">Heat adjustment</div>
+    <div class="section-label">Heat Adjustment</div>
     <div class="card-sm" style="font-size:12px;color:var(--muted)">Under 75°F → 8 oz water &nbsp;|&nbsp; 75–85°F → 12 oz &nbsp;|&nbsp; 85°F+ → 16 oz + electrolytes</div>
   </div>
   <div id="fuel-aerobic" class="fuel-panel card">
@@ -327,7 +327,7 @@ h1,h2,h3{font-family:var(--font-head)}
   <div id="fuel-long" class="fuel-panel card">
     <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:4px">Long run</div>
     <div style="font-size:12px;color:var(--muted);margin-bottom:12px">75+ min · 125–138 bpm · SL2s · Gut training is mandatory</div>
-    <div class="section-label">GU gel timeline</div>
+    <div class="section-label">GU Gel Timeline</div>
     <div class="gel-line">
       <div class="gel-item"><div class="gel-dot2"></div><div class="gel-time">Start → 40 min</div><div class="gel-action">Water only</div><div class="gel-detail">Let stored glycogen do the work</div></div>
       <div class="gel-item"><div class="gel-dot2"></div><div class="gel-time">~40–45 min</div><div class="gel-action">GU #1 + 2–3 SaltStick caps + 6–8 oz water</div><div class="gel-detail">Fuel before you need it</div></div>
@@ -384,11 +384,11 @@ h1,h2,h3{font-family:var(--font-head)}
 <div id="page-races" class="page">
   <div class="countdown-grid" id="countdown-grid"></div>
   <div class="card">
-    <div class="section-label">Training zones (recalibrated)</div>
+    <div class="section-label">Training Zones (Recalibrated)</div>
     <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px" id="zone-ref"></div>
   </div>
   <div class="card">
-    <div class="section-label">Non-negotiable rules</div>
+    <div class="section-label">Non-Negotiable Rules</div>
     <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--muted)">
       <div>→ HR + power over pace — always</div>
       <div>→ Easy days must stay below 138 bpm — no gray-zone creep</div>
@@ -403,10 +403,10 @@ h1,h2,h3{font-family:var(--font-head)}
 <!-- ===== CHECKLIST ===== -->
 <div id="page-checklist" class="page">
   <div style="font-size:12px;color:var(--muted);margin-bottom:14px">Tap each item as you complete it. Resets on button below.</div>
-  <div class="card"><div class="section-label">Immediately after</div><div id="cl-immediate"></div></div>
-  <div class="card"><div class="section-label">Within 30–60 min</div><div id="cl-fuel"></div></div>
-  <div class="card"><div class="section-label">Calf & injury check</div><div id="cl-calf"></div></div>
-  <div class="card"><div class="section-label">Log it</div><div id="cl-log"></div></div>
+  <div class="card"><div class="section-label">Immediately After</div><div id="cl-immediate"></div></div>
+  <div class="card"><div class="section-label">Within 30–60 Min</div><div id="cl-fuel"></div></div>
+  <div class="card"><div class="section-label">Calf &amp; Injury Check</div><div id="cl-calf"></div></div>
+  <div class="card"><div class="section-label">Log It</div><div id="cl-log"></div></div>
   <button onclick="resetChecklist()" style="margin-top:4px;width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;font-size:12px">Reset checklist</button>
 </div>
 
@@ -439,9 +439,11 @@ const ACTUAL_RUNS = {
   'Mon': 3.27,
   'Tue': 5.07,
   'Wed': 3.18,
+  'Fri': 4.81,
 };
 
 const HR_STREAMS = {
+  '18991041979': [123,126,133,132,136,139,137,140,141,142,142,141,142,141,141,144,144,134,143,144,145,139,144,145,145,142,145,140,142,145,145,145,144,142,142,143,144,144,143,146,144,145,142,143,142,146,143,142,147,143],
   '18966245710': [87,123,133,136,139,137,143,141,144,143,145,145,145,143,144,143,142,146,146,146,145,147,144,145,144,145,146,149,147,146,146,146,149,149,148,149,150,151,151,151,151,150,149,151,151,150,150,153,155,156],
   '18944702344': [123,126,133,132,136,139,137,140,141,142,142,141,142,141,141,144,144,126,143,144,145,139,144,145,145,142,145,140,142,145,145,145,144,142,142,143,144,144,143,146,144,145,142,143,142,146,143,142,147,143],
   '18937577949': [103,112,117,121,119,123,124,126,127,130,128,130,128,126,128,127,130,127,129,126,129,129,133,132,132,127,127,130,130,132,131,130,131,130,123,128,134,130,131,132,130,131,128,131,132,135,135,129,131,131],
@@ -451,6 +453,8 @@ const HR_STREAMS = {
 };
 
 const STRAVA_RUNS = [
+  {id:'18991041979',name:'Marathon Training - Day 52',date:'Jun 19, 2026',desc:'Easy does it. Running to meet the family at the city Juneteenth celebration.',dist:4.81,time:'54:22',movingSecs:3262,avgHR:134.1,maxHR:147,avgW:250.7,maxW:null,pace:2.375,elev:11,cal:669,effort:54,prs:0,segs:0,
+   best:[{l:'400m',v:'2:36'},{l:'½ mi',v:'5:16'},{l:'1K',v:'6:34'},{l:'1 mi',v:'10:38'},{l:'2 mi',v:'21:45'},{l:'5K',v:'34:46'}]},
   {id:'18966245710',name:'Marathon Training - Day 51 w/ARC',date:'Jun 17, 2026',desc:'Tempo run with the best running community. Group 5K — calf pain-free throughout.',dist:3.18,time:'31:46',movingSecs:1898,avgHR:145.0,maxHR:156,avgW:281.0,maxW:312,pace:2.699,elev:8.6,cal:446,effort:54,prs:1,segs:1,
    best:[{l:'400m',v:'2:15'},{l:'½ mi',v:'4:42'},{l:'1K',v:'5:52'},{l:'1 mi',v:'9:30'},{l:'2 mi',v:'19:24'},{l:'5K',v:'30:46'}]},
   {id:'18944702344',name:'Marathon Training - Day 50',date:'Jun 16, 2026',desc:'Taking advantage of the cloud coverage.',dist:5.07,time:'53:51',movingSecs:3231,avgHR:141.5,maxHR:147,avgW:265.6,maxW:298,pace:2.528,elev:9.2,cal:714,effort:81,prs:1,segs:1,
@@ -468,9 +472,9 @@ const STRAVA_RUNS = [
 ];
 
 const RACES = [
-  {name:'Pride 10K',date:'2026-06-21',color:'#1db87a',border:'#155c3c',bg:'#0d3d2a',goal:'Tune-up race'},
+  {name:'Pride 10K',date:'2026-06-21',color:'#1db87a',border:'#155c3c',bg:'#0d3d2a',goal:'Tune-up Race'},
   {name:'Long Beach Half',date:'2026-10-11',color:'#4a9eff',border:'#1a3d6a',bg:'#0d2140',goal:'Sub-2:30'},
-  {name:'LA Marathon',date:'2027-03-07',color:'#9b8ff5',border:'#3a2e6a',bg:'#251e42',goal:'Finish strong'},
+  {name:'LA Marathon',date:'2027-03-07',color:'#9b8ff5',border:'#3a2e6a',bg:'#251e42',goal:'Finish Strong'},
 ];
 
 // ============================================================
@@ -580,10 +584,10 @@ function buildStrava(){
     const hrColor=r.avgHR?(r.avgHR>145?'#e85d3c':r.avgHR>138?'#f0a030':'#1db87a'):'var(--muted)';
     const wColor=r.avgW?(r.avgW>252?'#f0a030':'#4a9eff'):'var(--muted)';
     const stats=[
-      {v:`${r.dist}`,l:'Miles'},{v:r.time,l:'Time'},{v:fmtPace(r.pace),l:'Avg pace'},{v:r.cal,l:'Calories'},
+      {v:`${r.dist}`,l:'Miles'},{v:r.time,l:'Time'},{v:fmtPace(r.pace),l:'Avg Pace'},{v:r.cal,l:'Calories'},
       ...(r.avgHR?[{v:Math.round(r.avgHR),l:'Avg HR',c:hrColor},{v:r.maxHR,l:'Max HR',c:'#e85d3c'}]:[]),
-      ...(r.avgW?[{v:Math.round(r.avgW)+'W',l:'Avg power',c:wColor},{v:r.maxW+'W',l:'Max power',c:'#e85d3c'}]:[]),
-      {v:`${Math.round(r.elev)}m`,l:'Elev'},{v:r.effort,l:'Rel. effort'},
+      ...(r.avgW?[{v:Math.round(r.avgW)+'W',l:'Avg Power',c:wColor},{v:r.maxW+'W',l:'Max Power',c:'#e85d3c'}]:[]),
+      {v:`${Math.round(r.elev)}m`,l:'Elev'},{v:r.effort,l:'Rel. Effort'},
     ];
     const zoneId=`zb-${idx}`;
     container.innerHTML+=`<div class="run-card">
@@ -804,7 +808,7 @@ function getDotColor(w){
 function buildSchedule(){
   // Race calendar
   const rc=document.getElementById('race-calendar');
-  [{name:'LA Front Runners Pride 10K',date:'Jun 21, 2026',goal:'Tune-up',c:'#1db87a',bd:'#155c3c',bg:'#0d3d2a'},{name:'Long Beach Half Marathon',date:'Oct 11, 2026',goal:'Sub-2:30',c:'#4a9eff',bd:'#1a3d6a',bg:'#0d2140'},{name:'LA Marathon',date:'Mar 7, 2027',goal:'Finish strong',c:'#9b8ff5',bd:'#3a2e6a',bg:'#251e42'}].forEach(r=>{
+  [{name:'LA Front Runners Pride 10K',date:'Jun 21, 2026',goal:'Tune-up',c:'#1db87a',bd:'#155c3c',bg:'#0d3d2a'},{name:'Long Beach Half Marathon',date:'Oct 11, 2026',goal:'Sub-2:30',c:'#4a9eff',bd:'#1a3d6a',bg:'#0d2140'},{name:'LA Marathon',date:'Mar 7, 2027',goal:'Finish Strong',c:'#9b8ff5',bd:'#3a2e6a',bg:'#251e42'}].forEach(r=>{
     rc.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:${r.bg};border:1px solid ${r.bd};border-radius:10px">
       <div style="width:8px;height:8px;border-radius:50%;background:${r.c};flex-shrink:0"></div>
       <div style="flex:1;font-size:13px;font-weight:500">${r.name}</div>
@@ -862,7 +866,7 @@ function buildRaces(){
     g.innerHTML+=`<div class="countdown-card" style="border-color:${r.border};background:${r.bg}">
       <div class="countdown-label" style="color:${r.color}">${r.name}</div>
       <div class="countdown-num" style="color:${r.color}">${d<=0?'🏁':d}</div>
-      <div class="countdown-unit">${d<=0?'Race day!':'days away'}</div>
+      <div class="countdown-unit">${d<=0?'Race Day!':'Days Away'}</div>
       <div class="countdown-goal" style="color:${r.color}">${r.goal}</div>
       <div class="countdown-date">${r.date}</div>
     </div>`;
